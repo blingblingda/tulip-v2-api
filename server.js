@@ -10,6 +10,8 @@ const port = 3000;
 
 app.use("/", routes);
 
+app.use(express.json());
+
 mongoose
   .connect(
     "REMOVED_SENSITIVE_VALUE"
@@ -23,4 +25,5 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+
 module.exports = app;
