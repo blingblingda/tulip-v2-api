@@ -19,6 +19,7 @@ app.use("/api", routes);
 app.use("/api/images", imageRoutes);
 app.use("/api/matches", matchesRoutes);
 
+//connect to mongoDB
 mongoose
   .connect(
     "REMOVED_SENSITIVE_VALUE"
