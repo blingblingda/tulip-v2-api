@@ -244,11 +244,11 @@ class MatchesController {
     }
   }
 
-  // get a specific match/conversation by conversation id
-  static async getOneMatch(req, res) {
+  // get a specific conversation by conversation id
+  static async getConversation(req, res) {
     try {
-      const { matchId } = req.params;
-      const o_id = new ObjectId(matchId);
+      const { conversationId } = req.params;
+      const o_id = new ObjectId(conversationId);
       const theMatch = await Match.findOne({ _id: o_id }); // Retrieve the match from the database
       const user_2_ID = theMatch.user_2;
       const user_2 = await User.findById(user_2_ID);
