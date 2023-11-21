@@ -24,6 +24,9 @@ matchesRouter.get("/get_invites/:userId", auth, MatchesC.getInvitesReceived);
 // Route for getting all invites sent
 matchesRouter.get("/invites_sent/:userId", auth, MatchesC.getInvitesSent);
 
+// Route for getting a specific match object
+matchesRouter.get("/get_one_match/:matchId", auth, MatchesC.getOneMatch);
+
 // Route for getting all matches objects in the database
 matchesRouter.get("/get_all_matches", auth, MatchesC.getAllMatches);
 

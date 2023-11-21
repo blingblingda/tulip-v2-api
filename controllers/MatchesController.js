@@ -1,5 +1,6 @@
 const User = require("../models/UserModel");
 const Match = require("../models/MatchModel");
+const ObjectId = require("mongoose").Types.ObjectId;
 const { v4: uuidv4 } = require("uuid");
 
 class MatchesController {
@@ -240,6 +241,23 @@ class MatchesController {
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Error retrieving invites sent" });
+    }
+  }
+
+  // get a specific match/conversation by conversation id
+  static async getOneMatch(req, res) {
+    try {
+      const { matchId } = req.params;
+      const o_id = new ObjectId(matchId);
+      const theMatch = await Match.findOne({ _id: o_id }); // Retrieve the match from the database
+      const user_2_ID = theMatch.user_2;
+      const user_2 = await User.findById(user_2_ID);
+      res.status(200).json({ name: user_2.name, photo: user_2.photo_url });
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ message: "Error retrieving the other user's info" });
     }
   }
 
