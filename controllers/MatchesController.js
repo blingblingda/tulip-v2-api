@@ -247,12 +247,17 @@ class MatchesController {
   // get a specific conversation by conversation id
   static async getConversation(req, res) {
     try {
-      const { conversationId } = req.params;
+      const { conversationId, currentUserId } = req.params;
       const o_id = new ObjectId(conversationId);
       const theMatch = await Match.findOne({ _id: o_id }); // Retrieve the match from the database
-      const user_2_ID = theMatch.user_2;
-      const user_2 = await User.findById(user_2_ID);
-      res.status(200).json({ name: user_2.name, photo: user_2.photo_url });
+      let partnerId;
+      if (currentUserId === theMatch.user_1) {
+        partnerId = theMatch.user_2;
+      } else {
+        partnerId = theMatch.user_1;
+      }
+      const partner = await User.findById(partnerId);
+      res.status(200).json({ name: partner.name, photo: partner.photo_url });
     } catch (error) {
       console.error(error);
       res

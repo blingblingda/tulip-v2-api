@@ -26,7 +26,7 @@ matchesRouter.get("/invites_sent/:userId", auth, MatchesC.getInvitesSent);
 
 // Route for getting a specific match object
 matchesRouter.get(
-  "/get_conversation/:conversationId",
+  "/get_conversation/:conversationId/:currentUserId",
   auth,
   MatchesC.getConversation
 );
