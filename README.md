@@ -64,6 +64,7 @@ npm start
 
 - **Yu Ji** - _Back-end Development_ - [LinkedIn](https://www.linkedin.com/in/yu-ji-785718113/)
 - **Angella Lao** - _Back-end Development_ - [LinkedIn](https://www.linkedin.com/in/angella-lao/)
+- **Beinda Shan**
 
 ## 📝 License
 
