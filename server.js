@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-for (const name of ["MONGODB_URI", "JWT_SECRET", "AWS_BUCKET_NAME", "AWS_BUCKET_REGION", "AWS_ACCESS_KEY", "AWS_SECRET_KEY", "PUBLIC_API_URL"]) {
+for (const name of ["MONGODB_URI", "JWT_SECRET", "AWS_BUCKET_NAME", "AWS_BUCKET_REGION", "AWS_ACCESS_KEY", "AWS_SECRET_KEY", "PUBLIC_API_URL", "FRONTEND_URL"]) {
   if (!process.env[name]) throw new Error(`Missing required environment variable: ${name}`);
 }
 
@@ -15,10 +15,10 @@ const imageRoutes = require("./routes/images");
 const matchesRoutes = require("./routes/matches");
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: process.env.FRONTEND_URL }));
 app.use("/api", routes);
 app.use("/api/images", imageRoutes);
 app.use("/api/matches", matchesRoutes);
