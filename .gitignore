@@ -1,3 +1,10 @@
 node_modules
 .env
 uploads
+
+# Local credentials and generated files
+.env
+.env.*
+!.env.example
+.DS_Store
+node_modules/

@@ -3,7 +3,6 @@ const { body, validationResult } = require("express-validator");
 const User = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config");
 
 // Sign up validation
 exports.userProfileValidation = [
@@ -64,7 +63,7 @@ exports.handleValidationResult = async (req, res, next) => {
 
     jwt.sign(
       payload,
-      config.get("jwtSecret"),
+      process.env.JWT_SECRET,
       // { expiresIn: 360000 },
       (err, token) => {
         if (err) {
@@ -113,7 +112,7 @@ exports.handleLogInValidationResult = async (req, res, next) => {
 
     jwt.sign(
       payload,
-      config.get("jwtSecret"),
+      process.env.JWT_SECRET,
       // { expiresIn: 3600000000 },
       (err, token) => {
         if (err) {

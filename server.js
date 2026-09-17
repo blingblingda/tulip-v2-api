@@ -1,3 +1,9 @@
+require("dotenv").config();
+
+for (const name of ["MONGODB_URI", "JWT_SECRET", "AWS_BUCKET_NAME", "AWS_BUCKET_REGION", "AWS_ACCESS_KEY", "AWS_SECRET_KEY"]) {
+  if (!process.env[name]) throw new Error(`Missing required environment variable: ${name}`);
+}
+
 const express = require("express");
 
 const mongoose = require("mongoose");
@@ -22,7 +28,7 @@ app.use("/api/matches", matchesRoutes);
 //connect to mongoDB
 mongoose
   .connect(
-    "REMOVED_SENSITIVE_VALUE"
+    process.env.MONGODB_URI
   )
   .then(() => {
     app.listen(port, () => {

@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const config = require("config");
 
 const { body, validationResult } = require("express-validator");
 
@@ -14,7 +13,7 @@ module.exports = function (req, res, next) {
 
   // Verify token
   try {
-    const decoded = jwt.verify(token, config.get("jwtSecret"));
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded.user; // assign user data extracted from the payload to authenticated request
     next();
   } catch (err) {
